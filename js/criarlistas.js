@@ -1,5 +1,5 @@
 const url = "https://notas-api-qvzz.onrender.com";
-const endpointItems = url + "/itens";
+const endpointItems = urlServidor + "/itens";
 
 const area = document.getElementById("areaTitulos");
 
@@ -16,7 +16,7 @@ function criarItem() {
         "usuarioId": 48
     };
 
-    fetch(endpointItems, {
+    fetch(endpointItens, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
@@ -33,7 +33,7 @@ function criarItem() {
 
 function excluirApiItem(id, descricao) {
     if (confirm(`Deseja excluir "${descricao}" da API?`)) {
-        let urlFinal = endpointItems + "/" + id;
+        let urlFinal = endpointItens + "/" + id;
 
         fetch(urlFinal, { method: "DELETE" })
             .then(response => {
@@ -47,7 +47,7 @@ function excluirApiItem(id, descricao) {
 function renderizarTitulo() {
     area.innerHTML = ""; // <<< limpa antes de renderizar novamente
 
-    fetch(endpointItems)
+    fetch(endpointItens)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Erro na requisição: " + response.status);
